@@ -1,0 +1,340 @@
+{
+  "address": "9JkhmwBvJ4kU9V8Ggu2HXXZkRZsqyZmNpd7HbnChbnkU",
+  "metadata": {
+    "name": "escrow",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "_cancel_escrow",
+      "discriminator": [
+        224,
+        142,
+        192,
+        171,
+        181,
+        249,
+        166,
+        108
+      ],
+      "accounts": [
+        {
+          "name": "initializer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "escrow"
+          ]
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  83,
+                  67,
+                  82,
+                  79,
+                  87,
+                  95,
+                  83,
+                  69,
+                  69,
+                  68
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.initializer",
+                "account": "Escrow"
+              },
+              {
+                "kind": "account",
+                "path": "escrow.receiver",
+                "account": "Escrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "_deposit_escrow",
+      "discriminator": [
+        52,
+        198,
+        188,
+        174,
+        164,
+        187,
+        242,
+        21
+      ],
+      "accounts": [
+        {
+          "name": "initializer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "escrow"
+          ]
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  83,
+                  67,
+                  82,
+                  79,
+                  87,
+                  95,
+                  83,
+                  69,
+                  69,
+                  68
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.initializer",
+                "account": "Escrow"
+              },
+              {
+                "kind": "account",
+                "path": "escrow.receiver",
+                "account": "Escrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "_initialize_escrow",
+      "discriminator": [
+        123,
+        160,
+        211,
+        240,
+        234,
+        183,
+        163,
+        103
+      ],
+      "accounts": [
+        {
+          "name": "initializer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "receiver",
+          "docs": [
+            "The receiver is an unchecked account because we only need its public key",
+            "to initialize the escrow. No data or ownership validation is required here."
+          ]
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  83,
+                  67,
+                  82,
+                  79,
+                  87,
+                  95,
+                  83,
+                  69,
+                  69,
+                  68
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "initializer"
+              },
+              {
+                "kind": "account",
+                "path": "receiver"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "_release_escrow",
+      "discriminator": [
+        121,
+        83,
+        50,
+        108,
+        81,
+        140,
+        29,
+        227
+      ],
+      "accounts": [
+        {
+          "name": "initializer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "escrow"
+          ]
+        },
+        {
+          "name": "receiver",
+          "docs": [
+            "we only transfer lamports to it, not read or mutate its data."
+          ],
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  83,
+                  67,
+                  82,
+                  79,
+                  87,
+                  95,
+                  83,
+                  69,
+                  69,
+                  68
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.initializer",
+                "account": "Escrow"
+              },
+              {
+                "kind": "account",
+                "path": "escrow.receiver",
+                "account": "Escrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Escrow",
+      "discriminator": [
+        31,
+        213,
+        123,
+        187,
+        186,
+        22,
+        218,
+        155
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InsufficientBalance",
+      "msg": "Insufficient balance to deposit"
+    },
+    {
+      "code": 6001,
+      "name": "Unauthorized",
+      "msg": "Unauthorized action"
+    },
+    {
+      "code": 6002,
+      "name": "AlreadyReleased",
+      "msg": "Escrow already released"
+    },
+    {
+      "code": 6003,
+      "name": "NotFunded",
+      "msg": "Escrow not funded yet"
+    }
+  ],
+  "types": [
+    {
+      "name": "Escrow",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "initializer",
+            "type": "pubkey"
+          },
+          {
+            "name": "receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "is_released",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+@import "@solana/wallet-adapter-react-ui/styles.css";
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap'); */
+@import "tailwindcss";
+
+:root {
+  --bg: #0b0f1a;
+  --panel: #071429;
+  --muted: #b8c7d9;
+}
+
+html,body,#root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--muted);
+}
+
+/* Simple reset for the demo */
+* { box-sizing: border-box; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* UI components */
+.nav {
+  background: linear-gradient(180deg, rgba(152, 143, 143, 0.02), transparent);
+  border: 1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+}
+
+/* Wallet button styles for adapter UI override */
+/* Fix wallet adapter button visibility */
+.wallet-adapter-button,
+.wallet-adapter-button-trigger {
+  background: #fff !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 150px !important;
+}
+
+
+/* small utilities */
+.kv { display:flex; justify-content:space-between; gap:0.5rem; font-size:14px; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; }
+.small { font-size: 12px; color: var(--muted); }
+.btn {
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+}
